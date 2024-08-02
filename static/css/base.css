@@ -1,0 +1,202 @@
+:root {
+    --primary-color: #1c2bb8;
+    --primary-color-50: #E8EAFC;
+    --primary-color-100: #D1D5FA;
+    --primary-color-200: #A3ABF5;
+    --primary-color-300: #7582F0;
+    --primary-color-400: #4858EA;
+    --primary-color-600: #1525B7;
+    --primary-color-700: #0F1C8A;
+    --primary-color-800: #0A125C;
+    --primary-color-900: #05092E;
+
+    --secondary-color: #B8A91C;
+    --secondary-color-200: #F2EAA6;
+    --secondary-color-300: #EBE07A;
+    --secondary-color-400: #E4D54E;
+    --secondary-color-600: #B1A21B;
+    --secondary-color-700: #857A14;
+    --secondary-color-900: #2C2907;
+
+    --third--color: #F1F1F1 ;
+    --third--color--300: #B3B3B3 ;
+    --third--color--400: #999999 ;
+    --third--color--600: #666666 ;
+    --third--color--800: #333333 ;
+    --third--color--900: #1A1A1A ;
+
+    --a-font:"Roboto Slab", serif;
+    --b-font:"Rubik", sans-serif;
+}
+
+html{
+    font-size: 20px;
+    background-color: var(--primary-color-300);
+    color: var(--third--color);
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+a{
+    text-decoration: none;
+    color: var(--third--color);
+}
+
+/*General Classes*/
+.center-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.center-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}
+.space-around{
+    display: flex;
+    justify-content: space-around;
+}
+.space-evenly{
+    display: flex;
+    justify-content: space-evenly;
+}
+.font-family-a{
+    font-family: var(--a-font);
+}
+.font-family-b{
+    font-family: var(--b-font);
+}
+
+/*Button*/
+.btn{
+    padding: .4rem .6rem;
+    border-radius: 6px;
+    height: 2rem;
+}
+.btn-success{
+    color: #eeeeee;
+    background-color: rgb(72, 175, 72);
+    border: solid 2px rgb(29, 75, 29);
+}
+.btn-danger{
+    background-color: #b91d08;
+    border: solid 2px #580d03;
+}
+.btn-danger a{
+    color: #eeeeee;
+}
+
+/*NavBar*/
+.navbar-container{
+    font-size: 1rem;
+    padding: 1%;
+    margin-bottom: 1rem;
+    border-bottom: solid 4px var(--primary-color-900);
+    background-color: var(--primary-color-700);
+}
+.nav-left{
+    width: 20%;
+    font-family: var(--a-font);
+}
+.nav-right{
+    width: 80%;
+    justify-content:space-evenly;
+    font-family: var(--b-font);    
+}
+#checkBox, .hamburger-btn{
+    display: none;
+}
+.nav-menu{
+    display: flex;
+    width: 100%;
+}
+.log{
+    width: 30%;
+}
+
+/*List*/
+.explore-products{
+    background-color: var(--primary-color-700);
+    width: 18rem;
+    margin-bottom: auto;
+}
+.post-products{
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.product{
+    width: 12rem;
+    background-color: var(--primary-color);
+    min-height: 15rem;
+    max-height: 30rem;
+    margin: 0 .5rem 1rem .5rem;
+    border-radius: 7px;
+    padding: .5%;
+}
+.product-image{
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+.product-image img{
+    max-width: 100%;
+    max-height: 10rem;
+}
+.product-info{
+    font-family: var(--b-font);
+    border-top: solid 2px #eeeeee;
+    height: 20%;
+}
+
+/*Page for create a product*/
+.create-product-container{
+    padding: 1%;
+    justify-content: left;
+    display: flex;
+    flex-direction: row;
+    font-family: var(--b-font);
+    height: 23rem;
+}
+.title-part{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: solid 3px var(--primary-color-800);
+}
+.product-page{
+    width: 35%;
+    padding: 1%;
+}
+.product-page input{
+    height: 1.1rem;
+}
+.product-page select{
+    height: 1.3rem;
+    width: 4rem;
+}
+.product-page textarea{
+    width: 10rem;
+    height: 5rem;
+    margin-top: .4rem;
+}
+.product-page-image{
+    width: 58%;
+    margin-left: auto;
+    background-color: var(--primary-color-700);
+    padding: 1%;
+}
+.product-page-image img{
+    max-width: 100%;
+    max-height: 18rem;
+}
+.productView-left{
+    background-color: var(--primary-color-700);
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Post{% endblock title %}
+
+{% block content %}
+<form method="POST">
+    <div class="create-product-container center-row">
+        <div class="product-page productView-left">
+            <div class="title-part">
+                <h5>MarketPlace</h5>
+                <h4>Product on sell</h4>
+                <h5>{{ user.username }}</h5>
+            </div>
+            <div>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <input type="submit" class="btn btn-success" value="Create">
+        </div>
+        <div class="product-page-image center-column">
+            <h1>Images</h1>
+            <p>Edit your image if you want</p>
+            {% if post.image %}
+                <img src="{{post.image.url}}"/>
+            {% endif %}
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block title %}New Post{% endblock title %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <div class="create-product-container space-between center-row">
+        <div class="product-page productView-left">
+            <div class="title-part">
+                <h5>MarketPlace</h5>
+                <h4>Product on sell</h4>
+                <h5>{{ user.username }}</h5>
+            </div>
+            <div>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <input type="submit" class="btn btn-success" value="Create">
+        </div>
+        <div class="product-page-image center-column">
+            <h1>Images</h1>
+            <p>Add images to your post</p>
+            <img id="the_image" />
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('id_image').addEventListener('change', function(event) {
+            var imagePreview = document.getElementById('the_image');
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+            }
+        });
+    </script>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+<div class="navbar-container center-row space-between">
+        
+    <div class="nav-left">
+        <a class="nav-logo" href="{% url 'list' %}">MarketPlace</a>
+    </div>
+
+    <div class="nav-right center-row">
+        <input type="checkbox" id="checkBox">
+        
+        <div class="hamburger-btn">
+            <label for="checkBox">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+
+        <div class="nav-menu space-evenly center-row">
+            <a class="nav-link" href="{% url 'list' %}">Home</a>
+            <a class="nav-link" href="#">Messages</a>
+            {% if user.is_authenticated %}
+            <div class="log space-evenly">
+                <a class="nav-link" href="{% url 'new' %}">Create</a>
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a href="#">{{ user.username }}</a>
+            </div>
+            {% else %}
+            <div class="log space-evenly">
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Sign up</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

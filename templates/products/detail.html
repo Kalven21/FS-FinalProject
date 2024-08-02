@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+<div class="create-product-container center-row">
+    <div class="product-page productView-left">
+        <div class="title-part">
+            <h5>MarketPlace</h5>
+            <h4>Product on sell</h4>
+            <h5>Published by {{ post.author }}</h5>
+        </div>
+        <div>
+            <h1>{{ post.title }}</h1>
+            <h2>${{ post.price }}</h2>
+            <h3>{{ post.subtitle }}</h3>
+            <h3>Categorie:</h3>
+            <p>Created on: {{ post.created_on }}</p>
+            <p>{{ post.body }}</p>
+        </div>
+    </div>
+    <div class="product-page-image center-column">
+        <h1>Images</h1>
+        {% if post.image %}
+        <img src="{{post.image.url}}"/>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

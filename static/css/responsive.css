@@ -1,0 +1,38 @@
+@media(max-width:640px){
+    .center-row{
+        display: flex;
+        flex-direction: column;
+    }
+    .hamburger-btn{
+        display: inline-flex;
+    }
+    .hamburger-btn span{
+        display: block;
+        background-color: var(--primary-color-900);
+        height: 5px;
+        width: 50px;
+        margin: 6px;
+        margin-right: auto;
+    }
+
+    /*Toggle funtion*/
+    #checkBox:not(:checked) ~ .nav-menu {
+        height: 0px;
+        overflow: hidden;
+    }
+    #checkBox:checked ~ .nav-menu{
+        height: auto;
+        overflow: visible;
+    }
+
+
+    /*Created product*/
+    .product-page{
+        width: 90%;
+        margin-bottom: 2rem;
+    }
+    .product-page-image{
+        width: 90%;
+        margin: auto;
+    }
+}

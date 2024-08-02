@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}List{% endblock title %}
+
+{% block content %}
+<div class="center-row">
+    <div class="explore-products font-family-b">
+        <h2>Search bar</h2>
+        <h2>Categories</h2>
+        <h2>Add a product</h2>
+        <h2>Location</h2>
+    </div>
+    <div class="post-products center-row">
+    {% for post in post_list %}
+        <div class="product">
+            <div class="product-image">
+                <a href="{% url 'detail' post.id %}">
+                    {% if post.image %}
+                    <img src="{{post.image.url}}"/>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="product-info">
+                <a href="{% url 'detail' post.id %}">
+                    <div class="center-row space-evenly">
+                        <h5>{{ post.title }}</h5>
+                        <h5>${{ post.price }}</h5>
+                    </div>
+                    <h6>{{ post.author }}</h6>
+                    <p>{{ post.body|truncatechars:100 }}</p> 
+                    {% if user.is_authenticated %}
+                    {% if post.author == user %}
+                    <a href="{% url 'edit' post.id  %}">Edit</a>
+                    <button class="btn btn-danger font-family-b"><a href="{% url 'delete' post.id %}">Delete</a></button>
+                    {% endif %}
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
