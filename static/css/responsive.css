@@ -25,6 +25,11 @@
         overflow: visible;
     }
 
+    /*List*/
+    .explore-products{
+        width: 70%;
+        padding: 10%;
+    }
 
     /*Created product*/
     .product-page{

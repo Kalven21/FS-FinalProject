@@ -9,16 +9,28 @@ class Status(models.Model):
     def __str__(self):
         return self.name
 
+class Categories(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.CharField(max_length=256)
+    
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     title = models.CharField(max_length=128)
     price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, default=0)
-    subtitle = models.CharField(max_length=256)
     body = models.TextField()
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE
     )
     created_on = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(
+        Categories,
+        on_delete=models.CASCADE,
+        null= True,
+        blank = True 
+    )
     status = models.ForeignKey(
         Status,
         on_delete=models.CASCADE

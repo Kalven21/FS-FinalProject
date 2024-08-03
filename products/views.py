@@ -10,21 +10,29 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
-from .models import Post, Status
+from .models import Post,Categories, Status
 from .constants import PUBLISHED_STATUS, SOLD_STATUS
+from django.shortcuts import get_object_or_404
 
 class ProductsView(ListView):
     template_name = "products/list.html"
     model = Post
     
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        published = Status.objects.get(id=PUBLISHED_STATUS)
+        category = self.kwargs.get('category', None)
+        if category:
+            category = get_object_or_404(Categories, name=category)
+            queryset = queryset.filter(category=category, status=published)
+        else:
+            queryset = queryset.filter(status=published)
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        published = Status.objects.get(id=PUBLISHED_STATUS)
-        context["postProducts_list"] = (
-            Post.objects
-            .filter(status=published)
-            .order_by("created_on").reverse()
-        )
+        context["categories"] = Categories.objects.all()
+        context["post_list"] = self.get_queryset()
         return context
     
 class SoldListView(LoginRequiredMixin, ListView):
@@ -49,7 +57,7 @@ class ProductDetailView(DetailView):
 class ProductCreatedView(LoginRequiredMixin, CreateView):
     template_name = "products/new.html"
     model = Post
-    fields = ["title", "price", "subtitle", "body", "status" ,"image"]
+    fields = ["title", "price", "body", "status", "category" ,"image"]
     
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -58,7 +66,7 @@ class ProductCreatedView(LoginRequiredMixin, CreateView):
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "products/edit.html"
     model = Post
-    fields = ["title", "price", "subtitle", "body", "status", "image"]
+    fields = ["title", "price", "body", "status", "category" , "image"]
     
     def test_func(self):
         post = self.get_object()

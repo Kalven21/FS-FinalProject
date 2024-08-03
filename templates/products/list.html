@@ -7,12 +7,29 @@
 <div class="center-row">
     <div class="explore-products font-family-b">
         <h2>Search bar</h2>
+        <div class="search">
+            <input
+            onchange="{searchByText}"
+            type="search"
+            placeholder="Search..."
+            >
+        </div>
         <h2>Categories</h2>
+        <ul class="">
+            <li>
+                <a href="{% url 'list' %}">All</a>
+            </li>
+            {% for cat in categories %}
+                <li>
+                    <a href="{% url 'product_by_category' category=cat.name %}">{{cat.name}}</a>
+                </li>
+            {% endfor %}           
+        </ul>
         <h2>Add a product</h2>
         <h2>Location</h2>
     </div>
     <div class="post-products center-row">
-    {% for post in post_list %}
+        {% for post in post_list %}
         <div class="product">
             <div class="product-image">
                 <a href="{% url 'detail' post.id %}">
@@ -23,12 +40,11 @@
             </div>
             <div class="product-info">
                 <a href="{% url 'detail' post.id %}">
-                    <div class="center-row space-evenly">
-                        <h5>{{ post.title }}</h5>
-                        <h5>${{ post.price }}</h5>
+                    <div class="product-info-slice">
+                        <h2>${{ post.price }}</h2>
+                        <h4>{{ post.title }}</h4>
+                        <h5>{{ post.author }}</h5>
                     </div>
-                    <h6>{{ post.author }}</h6>
-                    <p>{{ post.body|truncatechars:100 }}</p> 
                     {% if user.is_authenticated %}
                     {% if post.author == user %}
                     <a href="{% url 'edit' post.id  %}">Edit</a>
@@ -41,4 +57,25 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search-input');
+        const postProducts = document.getElementById('post-products');
+        const posts = [...postProducts.getElementsByClassName('product')];
+
+        searchInput.addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase();
+            posts.forEach(post => {
+                const title = post.dataset.title.toLowerCase();
+                if (title.includes(searchText)) {
+                    post.style.display = '';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
 {% endblock content %}
