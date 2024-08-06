@@ -9,7 +9,7 @@
         <h2>Search bar</h2>
         <div class="search">
             <input
-            onchange="{searchByText}"
+            id="search-input"
             type="search"
             placeholder="Search..."
             >
@@ -28,9 +28,9 @@
         <h2>Add a product</h2>
         <h2>Location</h2>
     </div>
-    <div class="post-products center-row">
+    <div id="post-products" class="post-products center-row">
         {% for post in post_list %}
-        <div class="product">
+        <div class="product" data-title="{{ post.title }}">
             <div class="product-image">
                 <a href="{% url 'detail' post.id %}">
                     {% if post.image %}

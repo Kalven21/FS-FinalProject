@@ -3,19 +3,18 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-<div class="login">
-    <h1>Login page</h1>
+<div class="logPage center-column">
+    <h1>Login</h1>
 
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-
-        <button class="btn">Login</button>
-
-        <label>Do you need an account?</label>
-        <a href="{% url 'register' %}">Sign up here!</a>
-
+        <button class="btn btn-success">Login</button>
     </form>
+    
+
+    <label>Do you need an account?</label>
+    <a href="{% url 'register' %}">Sign up here!</a>
 
 </div>
 

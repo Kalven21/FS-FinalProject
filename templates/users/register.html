@@ -3,14 +3,14 @@
 {% block title %}Create account{% endblock %}
 
 {% block content %}
-<div class="">
+<div class="logPage">
     <h1>Create an Account</h1>
 
     <form method="POST">
         {% csrf_token %}
 
         {{ form.as_p }}
-        <button class="">Sign up</button>
+        <button class="btn btn-success">Sign up</button>
 
         <hr>
 
