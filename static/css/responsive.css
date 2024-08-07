@@ -14,7 +14,7 @@
         margin: 6px;
         margin-right: auto;
     }
-
+    
     /*Toggle funtion*/
     #checkBox:not(:checked) ~ .nav-menu {
         height: 0px;
@@ -24,11 +24,31 @@
         height: auto;
         overflow: visible;
     }
+    
+    #checkBox2:not(:checked) ~ .inside-explore{
+        height: 0px;
+        overflow: hidden;
+    }
+    #chechBox2:checked ~ .inside-explore{
+        height: auto;
+        overflow: visible;
+    }
 
     /*List*/
+    .list-container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
     .explore-products{
         width: 70%;
         padding: 10%;
+    }
+    .post-products{
+        padding: 2rem;
+    }
+    .product{
+        width: 17rem;
     }
 
     /*Created product*/

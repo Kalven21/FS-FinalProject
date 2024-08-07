@@ -111,7 +111,7 @@ a{
     justify-content:space-evenly;
     font-family: var(--b-font);    
 }
-#checkBox, .hamburger-btn{
+#checkBox, #checkBox2, .hamburger-btn{
     display: none;
 }
 .nav-menu{
@@ -123,14 +123,27 @@ a{
 }
 
 /*List*/
+.list-container{
+    margin-top: -1rem;
+    display: flex;
+    flex-direction: row;
+}
 .explore-products{
     background-color: var(--primary-color-700);
     width: 18rem;
     margin-bottom: auto;
     padding: 2.3%;
+    border-color: var(--primary-color-800);
+}
+.explore-products input{
+    background-color: var(--primary-color-200);
+    height: 1.5rem;
+    width: 12rem;
+    border-radius: 12px;
 }
 .post-products{
     width: 75%;
+    padding: 1%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -158,8 +171,20 @@ a{
     height: 20%;
     padding: 3%;
     padding-top: 4%;
-}.product-info-slice{
+}
+.product-info-slice{
     margin-bottom: 5%;
+}
+.search{
+    color: var(--primary-color-900);
+    border-color: var(--primary-color-50);
+    border: 1px solid var(--primary-color-200);
+    font-weight: bold;
+    font-size: 17px;
+    padding: 10px;
+}
+.margin-bottom{
+    margin-bottom: .7rem;
 }
 
 /*Page for create a product*/

@@ -4,57 +4,72 @@
 {% block title %}List{% endblock title %}
 
 {% block content %}
-<div class="center-row">
+<div class="list-container">
     <div class="explore-products font-family-b">
-        <h2>Search bar</h2>
-        <div class="search">
-            <input
-            id="search-input"
-            type="search"
-            placeholder="Search..."
-            >
+        
+        <input type="checkbox" id="checkBox2" class="margin-bottom">
+        
+        <div class="hamburger-btn margin-bottom">
+            <label for="checkBox2">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
         </div>
-        <h2>Categories</h2>
-        <ul class="">
-            <li>
-                <a href="{% url 'list' %}">All</a>
-            </li>
-            {% for cat in categories %}
+
+        <div class="inside-explore">
+            <div class="margin-bottom">
+                <input
+                class="search"
+                id="search-input"
+                type="search"
+                placeholder="   Search..."
+                >
+            </div>
+            <h2 class="margin-bottom">Location</h2>
+            <h2 class="margin-bottom"><a class="nav-link" href="#">Wish List</a></h2>
+            <h2 class="margin-bottom"><a class="nav-link" href="{% url 'new' %}"> + Create a Post </a></h2>
+            <h2 class="margin-bottom">Categories</h2>
+            <ul class="margin-bottom">
+                <li>
+                    <a href="{% url 'list' %}">All</a>
+                </li>
+                {% for cat in categories %}
                 <li>
                     <a href="{% url 'product_by_category' category=cat.name %}">{{cat.name}}</a>
                 </li>
-            {% endfor %}           
-        </ul>
-        <h2>Add a product</h2>
-        <h2>Location</h2>
-    </div>
-    <div id="post-products" class="post-products center-row">
-        {% for post in post_list %}
-        <div class="product" data-title="{{ post.title }}">
-            <div class="product-image">
-                <a href="{% url 'detail' post.id %}">
-                    {% if post.image %}
-                    <img src="{{post.image.url}}"/>
-                    {% endif %}
-                </a>
-            </div>
-            <div class="product-info">
-                <a href="{% url 'detail' post.id %}">
-                    <div class="product-info-slice">
-                        <h2>${{ post.price }}</h2>
-                        <h4>{{ post.title }}</h4>
-                        <h5>{{ post.author }}</h5>
-                    </div>
-                    {% if user.is_authenticated %}
-                    {% if post.author == user %}
-                    <a href="{% url 'edit' post.id  %}">Edit</a>
-                    <button class="btn btn-danger font-family-b"><a href="{% url 'delete' post.id %}">Delete</a></button>
-                    {% endif %}
-                    {% endif %}
-                </a>
-            </div>
+                {% endfor %}           
+            </ul>
         </div>
-        {% endfor %}
+    </div>
+
+        <div id="post-products" class="post-products center-row">
+            {% for post in post_list %}
+            <div class="product" data-title="{{ post.title }}">
+                <div class="product-image">
+                    <a href="{% url 'detail' post.id %}">
+                        {% if post.image %}
+                        <img src="{{post.image.url}}"/>
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="product-info">
+                    <a href="{% url 'detail' post.id %}">
+                        <div class="product-info-slice">
+                            <h2>${{ post.price }}</h2>
+                            <h4>{{ post.title }}</h4>
+                            <h5>{{ post.author }}</h5>
+                        </div>
+                        {% if user.is_authenticated %}
+                        {% if post.author == user %}
+                        <a href="{% url 'edit' post.id  %}">Edit</a>
+                        <button class="btn btn-danger font-family-b"><a href="{% url 'delete' post.id %}">Delete</a></button>
+                        {% endif %}
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
     </div>
 </div>
 
