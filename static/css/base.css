@@ -255,3 +255,26 @@ a{
     width: 15rem;
     height: .9rem;
 }
+
+/*Chat page*/
+.chatContainer{
+    margin-bottom: auto;
+}
+.chatContainer img{
+    width: 80%;
+}
+.chatInfo{
+    background-color: var(--primary-color-700);
+    width: 35%;
+}
+.chat{
+    width: 65%;
+    padding: 3%;
+    background-color: var(--primary-color-400);
+}
+.messages{
+    background-color: var(--primary-color-700);
+    padding: 1%;
+    padding-left: 2%;
+    border-radius: 20px;
+}

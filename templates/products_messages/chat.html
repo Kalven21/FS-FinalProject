@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat for {{product.title}}{% endblock title %}
+
+{% block content %}
+<div class="list-container chatContainer">
+    <div class="explore-products chatInfo">
+        <h2>Other conversations</h2>
+        <h3>{{product.title}}</h3>
+        {% if product.image %}
+            <h3>{{product.price}}</h3>
+            <img src="{{product.image.url}}"/>
+        {% endif %}
+    </div>
+
+    <div class="chat">
+        {% for message in messages %}
+            <div class="messages">
+                <p></p>
+                <p>{{message.message}}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

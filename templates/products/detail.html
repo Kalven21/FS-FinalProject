@@ -17,6 +17,15 @@
             <p>Category: {{ post.categorie }}</p>
             <p>{{ post.body }}</p>
         </div>
+        <div>
+            <p>Send a message to the seller</p>
+            <input
+            class=""
+            id="messageToSend"
+            placeholder="Hi, is still available?"
+            >
+            <button class="btn btn-success"><a href="{% url 'chat' product_id=post.id %}">Send</a></button>
+        </div>
     </div>
     <div class="product-page-image center-column">
         <h1>Images</h1>
