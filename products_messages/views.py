@@ -7,6 +7,7 @@ from django.views import View
 from django.shortcuts import render
 from products.models import Post
 from .models import SendMessage
+from django.shortcuts  import redirect
 
 class ProductChatView(View, LoginRequiredMixin):
     template_name = "products_messages/chat.html"
@@ -23,9 +24,24 @@ class ProductChatView(View, LoginRequiredMixin):
         
         return render(request, self.template_name, {"messages": messages, 'product': product})
     
-    def post(self, request):
+    def post(self, request, product_id):
         # save the message
-        pass
+        product = Post.objects.get(id=product_id)
+        
+        sender_id = request.POST.get('sender')     
+        receiver_id = request.POST.get('receiver')
+        message_text = request.POST.get('message')
+        
+        SendMessage.objects.create(
+            message = message_text,
+            sender_id = sender_id,
+            receiver_id = receiver_id,
+            product = product,
+            read = False
+        )
+        
+        
+        return redirect('chat', product_id=product_id)
         
 
 class AllChatsView(View, LoginRequiredMixin):

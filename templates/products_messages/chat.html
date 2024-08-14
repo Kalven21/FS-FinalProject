@@ -14,12 +14,26 @@
     </div>
 
     <div class="chat">
-        {% for message in messages %}
-            <div class="messages">
-                <p></p>
-                <p>{{message.message}}</p>
-            </div>
-        {% endfor %}
+        <div>
+            {% for message in messages %}
+                <div class="messages">
+                    <p></p>
+                    <p>{{message.message}}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <form method="POST"  action="{% url 'chat' product_id=product.id %}">
+                {% csrf_token %}
+                <input class="" id="messageToSend" name="message">
+                <input type="hidden" name="sender" value="{{user.id}}"></input>
+                <input type="hidden" name="receiver" value="{{product.author.id}}"></input>
+                <button type="submit" class="btn btn-success">
+                    Send
+                </button>
+            </form>
+        </div>
+        
     </div>
 </div>
 {% endblock content %}

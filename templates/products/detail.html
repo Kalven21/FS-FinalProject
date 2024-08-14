@@ -19,18 +19,21 @@
         </div>
         <div>
             <p>Send a message to the seller</p>
-            <input
-            class=""
-            id="messageToSend"
-            placeholder="Hi, is still available?"
-            >
-            <button class="btn btn-success"><a href="{% url 'chat' product_id=post.id %}">Send</a></button>
+            <form method="POST" action="{% url 'chat' product_id=post.id %}">
+                {% csrf_token %}
+                <input class="" id="messageToSend" name="message" placeholder="Hi, is still available?">
+                <input type="hidden" name="sender" value="{{user.id}}"></input>
+                <input type="hidden" name="receiver" value="{{post.author.id}}"></input>
+                <button type="submit" class="btn btn-success">
+                    Send
+                </button>
+            </form>
         </div>
     </div>
     <div class="product-page-image center-column">
         <h1>Images</h1>
         {% if post.image %}
-        <img src="{{post.image.url}}"/>
+        <img src="{{post.image.url}}" />
         {% endif %}
     </div>
 </div>

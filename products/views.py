@@ -33,6 +33,7 @@ class ProductsView(ListView):
         context = super().get_context_data(**kwargs)
         context["categories"] = Categories.objects.all()
         context["post_list"] = self.get_queryset()
+        context['selected_category'] = self.kwargs.get('category', None)
         return context
     
 class SoldListView(LoginRequiredMixin, ListView):
