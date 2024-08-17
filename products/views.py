@@ -12,7 +12,30 @@ from django.contrib.auth.mixins import (
 )
 from .models import Post,Categories, Status
 from .constants import PUBLISHED_STATUS, SOLD_STATUS
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
+from .forms import Contact
+from django.core.mail import send_mail
+
+def contact(request):
+    if request.method =="POST":
+        form = Contact(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            message = form.cleaned_data["message"]
+
+            send_mail(
+                "Email from" + name,         # subject
+                message,                     # contect         
+                email,                       # from
+                ["zamorakevin21@gmail.com"]  # to
+            )
+    
+    else:
+        form = Contact()
+        
+    return render(request, "products/contact.html", {"form": form})
 
 class ProductsView(ListView):
     template_name = "products/list.html"
@@ -81,3 +104,4 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return post.author == self.request.user
+    

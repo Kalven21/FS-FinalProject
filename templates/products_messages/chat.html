@@ -5,24 +5,23 @@
 {% block content %}
 <div class="list-container chatContainer">
     <div class="explore-products chatInfo">
-        <h2>Other conversations</h2>
+        <h2 class="margin-bottom"><a href="{% url 'allChats' %}">Other conversations</a></h2>
         <h3>{{product.title}}</h3>
         {% if product.image %}
-            <h3>{{product.price}}</h3>
+            <h3 class="margin-bottom">{{product.price}}</h3>
             <img src="{{product.image.url}}"/>
         {% endif %}
     </div>
 
     <div class="chat">
-        <div>
+        <div class="chat-messages">
             {% for message in messages %}
                 <div class="messages">
-                    <p></p>
                     <p>{{message.message}}</p>
                 </div>
             {% endfor %}
         </div>
-        <div>
+        <div class="send-message">
             <form method="POST"  action="{% url 'chat' product_id=product.id %}">
                 {% csrf_token %}
                 <input class="" id="messageToSend" name="message">
@@ -33,7 +32,6 @@
                 </button>
             </form>
         </div>
-        
     </div>
 </div>
 {% endblock content %}

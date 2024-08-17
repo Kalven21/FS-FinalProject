@@ -60,4 +60,9 @@
         width: 90%;
         margin: auto;
     }
+
+    /*Chat page*/
+    .chat{
+        width: 90%;
+    }
 }

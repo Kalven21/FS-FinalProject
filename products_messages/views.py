@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import (
 from .models import SendMessage
 from django.views import View
 from django.shortcuts import render
+from django.db.models import Q
 from products.models import Post
 from .models import SendMessage
 from django.shortcuts  import redirect
@@ -40,28 +41,25 @@ class ProductChatView(View, LoginRequiredMixin):
             read = False
         )
         
-        
         return redirect('chat', product_id=product_id)
         
 
 class AllChatsView(View, LoginRequiredMixin):
-    template_name = "products_messages/mainChats"
+    template_name = "products_messages/mainChats.html"
     model = SendMessage
     
-
-
-
-
-"""
-send > view que guardar el menssage y redirecciona a la pagina de chat
-
-la pagina de chat tiene el id del producto arriba
-con el id del product, cargar el product
-de el obtienes el seller
-
-y cargas los messages donde el buyer = request.user
-and seller = product.author
-
-mandas lo mensages como contexto al template
-el template despliega los mensages
-"""
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        conversations = SendMessage.objects.filter(
+            Q(sender=user) | Q(receiver=user)
+        ).order_by('sended_time')
+        
+        unique_conversations = []
+        
+        for msg in conversations:
+            pid = msg.product.id
+            exist = any(message.product.id == pid for message in unique_conversations)
+            if not exist:
+                unique_conversations.append(msg)       
+        
+        return render(request, self.template_name, {'conversations': unique_conversations})

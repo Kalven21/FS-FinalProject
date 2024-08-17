@@ -4,9 +4,16 @@
 {% block title %}Chats{% endblock title %}
 
 {% block content %}
-<div class="chat-container">
-    <div>
-        
+<div class="chats-container center-row">
+    {% for message in conversations %}
+    <div class="chatsCard">
+        {% if product.image %}
+            <img src="{{product.image.url}}"/>
+        {% endif %}
+        <p>Product: {{ message.product.title }}</p>
+        <p>With: {{ message.other_user.username }}</p>
+        <a href="{% url 'chat' product_id=message.product.id %}">Go to chat</a>
     </div>
+    {% endfor %}
 </div>
 {% endblock content %}

@@ -29,4 +29,3 @@ class UserRegisterView(CreateView):
 def user_logout_view(request):
     logout(request)
     return redirect('login')
-

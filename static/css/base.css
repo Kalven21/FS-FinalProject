@@ -281,7 +281,16 @@ a{
     width: 15rem;
     height: .9rem;
 }
+/*All Chats page*/
+.chats-container{
 
+}
+.chatsCard{
+    background-color: var(--primary-color-700);
+    width: 12rem;
+    padding: 10px;
+    margin: 2px;
+}
 /*Chat page*/
 .chatContainer{
     margin-bottom: auto;
@@ -295,12 +304,31 @@ a{
 }
 .chat{
     width: 65%;
-    padding: 3%;
     background-color: var(--primary-color-400);
+    font-family: var(--a-font);
 }
 .messages{
     background-color: var(--primary-color-700);
     padding: 1%;
     padding-left: 2%;
     border-radius: 20px;
+    width: 70%;
+    margin-bottom: 6px;
+}
+.chat-messages{
+    padding: 3%;
+}
+.send-message{
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+    padding: 10px;
+    padding-right: 3rem;
+    background-color: var(--primary-color-700);
+    border-top: solid 4px var(--primary-color-900);
+    
+}
+.send-message input{
+    width: 20rem;
+    height: 1.6rem;
 }

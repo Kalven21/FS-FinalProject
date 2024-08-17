@@ -18,6 +18,7 @@
         <div class="nav-menu space-evenly center-row">
             <a class="nav-link" href="{% url 'list' %}">Home</a>
             <a class="nav-link" href="{% url 'allChats' %}">Messages</a>
+            <a class="nav-link" href="{% url 'contact' %}">Service</a>
             {% if user.is_authenticated %}
             <div class="log space-evenly">
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
