@@ -280,6 +280,8 @@ a{
 .logPage input{
     width: 15rem;
     height: .9rem;
+    background-color: var(--primary-color-100);
+    border-radius: 18px;
 }
 /*All Chats page*/
 .chats-container{

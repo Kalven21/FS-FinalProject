@@ -22,6 +22,7 @@
             {% if user.is_authenticated %}
             <div class="log space-evenly">
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link" href="{% url 'change_password' %}">Change</a>
                 <a href="#">{{ user.username }}</a>
             </div>
             {% else %}
