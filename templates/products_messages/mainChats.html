@@ -6,13 +6,21 @@
 {% block content %}
 <div class="chats-container center-row">
     {% for message in conversations %}
-    <div class="chatsCard">
-        {% if product.image %}
-            <img src="{{product.image.url}}"/>
-        {% endif %}
-        <p>Product: {{ message.product.title }}</p>
-        <p>With: {{ message.other_user.username }}</p>
-        <a href="{% url 'chat' product_id=message.product.id %}">Go to chat</a>
+    <div class="center-column chatsCard " style="height: 17rem;">
+        <div>
+            {% if message.product.image %}
+                <img style="width: 100%; max-height: 15rem;" src="{{message.product.image.url}}"/>
+            {% endif %}
+        </div>
+        <div>
+            <p>Product: {{ message.product.title }}</p>
+            {% if message.sender.id == user.id %}
+            <p>With: {{ message.receiver.username }}</p>
+            {% else %}
+            <p>With: {{ message.sender.username }}</p>
+            {% endif %}
+            <a href="{% url 'chat' product_id=message.product.id %}">Go to chat</a>
+        </div>
     </div>
     {% endfor %}
 </div>

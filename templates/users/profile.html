@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{%% block title %}Profile{% endblock title %}
-
+{% block title %}Profile{% endblock title %}
 {% block content %}
-
-
-{% endblock title %}
+<div class="profile-info">
+    <h2 class="profile-user center-column">{{ profile.user.username }}'s Profile</h2>
+    <p style="margin-bottom: .5rem;"><strong>Description:</strong> {{ profile.description }}</p>
+    <p style="margin-bottom: .5rem;"><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
+    <p style="margin-bottom: .5em;"><strong>Birthday:</strong> {{ profile.birthday }}</p>
+    <p style="margin-bottom: 1rem;"><strong>Lives In:</strong> {{ profile.livesPlace }}</p>
+    {% if profile.user == user %}
+        <button class="btn btn-success" style="margin-bottom: 1rem;"><a href="{% url 'profile_edit' %}">Edit Profile</a></button>
+    {% else %}
+    {% endif %}
+    <h3>{{ profile.user.username }}'s Posts:</h3>
+</div>
+<div class="profile-posts center-row">
+    {% for post in products %}
+    <a href="{% url 'detail' post.id %}">
+        <div class="profile-post">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            <h4>{{ post.title }}</h4>
+            <p>{{ post.content|truncatewords:20 }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserLoginView, user_logout_view, UserRegisterView, UserPasswordChangeView,  UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView
+from .views import UserLoginView, user_logout_view, UserRegisterView, UserPasswordChangeView,  UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView, UserProfileView, UserProfileEditView
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -11,6 +11,8 @@ urlpatterns = [
     path('password_reset/', UserPasswordResetView.as_view(), name='password_reset'),
     path('password_reset_done/', UserPasswordResetDoneView.as_view(), name='password_reset_done'),
     path('password_reset_confirm/<uidb64>/<token>/', UserPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('profile/<int:user_id>/', UserProfileView.as_view(), name='profile'),
+    path("profile_edit/", UserProfileEditView.as_view(), name='profile_edit')
 ]
 
 if settings.DEBUG:

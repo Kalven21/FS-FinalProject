@@ -26,7 +26,6 @@
                 placeholder="   Search..."
                 >
             </div>
-            <h2 class="margin-bottom"><a class="nav-link" href="#">Wish List</a></h2>
             <h2 class="margin-bottom"><a class="nav-link" href="{% url 'new' %}"> + Create a Post </a></h2>
             <h2 class="margin-bottom">Categories</h2>
             <ul class="margin-bottom categories-list">
@@ -59,7 +58,7 @@
                         <div class="product-info-slice">
                             <h2>${{ post.price }}</h2>
                             <h4>{{ post.title }}</h4>
-                            <h5>{{ post.author }}</h5>
+                            <h5><a href="{% url 'profile' user_id=post.author.id %}">{{ post.author }}</a></h5>
                         </div>
                         {% if user.is_authenticated %}
                         {% if post.author == user %}
